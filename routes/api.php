@@ -25,6 +25,6 @@ Route::get('/projects', [ProjectController::class, 'index']);
 
 Route::get('/project/{slug}', [ProjectController::class, 'show']);
 
-Route::post('/contacts', LeadController::class, 'store');
+Route::post('/contacts', [LeadController::class, 'store']);
 
 
