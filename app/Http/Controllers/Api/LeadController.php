@@ -19,8 +19,14 @@ class LeadController extends Controller
         $new_lead->save();
 
         $objectNewContact = new NewContact($new_lead);
-        
+
         Mail::to('info@katialosignore.it')->send($objectNewContact);
+
+        return response()->json(
+            [
+                 'success' => true
+            ]
+        );
 
     }
 }
