@@ -28,3 +28,5 @@ Route::get('/project/{slug}', [ProjectController::class, 'show']);
 Route::post('/contacts', [LeadController::class, 'store']);
 
 
+
+

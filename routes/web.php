@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\TechnologyController;
+use App\Http\Controllers\Admin\LeadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware(['auth', 'verified'])
    ->name('admin.')
    ->prefix('admin')
    ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::get('/contacts', [LeadController::class, 'index'])->name('contacts.index');
 
         Route::resource('projects', ProjectController::class)->parameters([
             'projects' => 'project:slug'
@@ -49,5 +53,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
